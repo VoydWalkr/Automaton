@@ -1,0 +1,15 @@
+{
+  "name": "my-terra-dapp",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "@iboss/terrain": "0.0.8",
+    "dotenv": "^16.0.0"
+  },
+  "workspaces": [
+    "frontend"
+  ],
+  "author": "",
+  "license": "ISC",
+  "private": true
+}

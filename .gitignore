@@ -1,0 +1,5 @@
+.env
+.dev.env
+
+build
+node_modules
