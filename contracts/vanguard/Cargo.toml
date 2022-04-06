@@ -45,7 +45,6 @@ cosmwasm-storage = { version = "0.16" }
 cw-storage-plus = "0.9.1"
 cw2 = "0.9.1"
 num-rational = { version = "0.4", default-features = false }
-num-traits = { version = "0.2", default-features = false }
 schemars = "0.8.8"
 serde = { version = "1.0.127", default-features = false, features = ["derive"] }
 thiserror = { version = "1.0.26" }

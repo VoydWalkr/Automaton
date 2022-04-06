@@ -639,7 +639,6 @@ dependencies = [
  "cw-storage-plus",
  "cw2",
  "num-rational",
- "num-traits",
  "schemars",
  "serde",
  "thiserror",
