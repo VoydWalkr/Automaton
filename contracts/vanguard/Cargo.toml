@@ -1,5 +1,5 @@
 [package]
-name = "counter"
+name = "voydwalkr-vanguard"
 version = "0.1.0"
 authors = ["Kiruse <kiruse@kiruse.dev>"]
 edition = "2018"
@@ -40,13 +40,16 @@ optimize = """docker run --rm -v "$(pwd)":/code \
 """
 
 [dependencies]
-cosmwasm-std = { version = "0.16.2" }
-cosmwasm-storage = { version = "0.16.0" }
-cw-storage-plus = "0.8.0"
-cw2 = "0.8.1"
-schemars = "0.8.3"
+cosmwasm-std = { version = "0.16" }
+cosmwasm-storage = { version = "0.16" }
+cw-storage-plus = "0.9.1"
+cw2 = "0.9.1"
+num-rational = { version = "0.4", default-features = false }
+num-traits = { version = "0.2", default-features = false }
+schemars = "0.8.8"
 serde = { version = "1.0.127", default-features = false, features = ["derive"] }
 thiserror = { version = "1.0.26" }
+voydwalkr-util = { git = "https://github.com/VoydWalkr/Util" }
 
 [dev-dependencies]
-cosmwasm-schema = { version = "0.16.0" }
+cosmwasm-schema = { version = "0.16" }
