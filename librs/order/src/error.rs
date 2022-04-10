@@ -14,6 +14,9 @@ pub enum OrderError {
   #[error("{0}")]
   ECDSAError(#[from] ecdsa::Error),
   
+  #[error("DecodeError")]
+  DecodeError(#[from] base64::DecodeError),
+  
   #[error("Unsigned")]
   Unsigned,
 }

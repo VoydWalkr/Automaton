@@ -1162,6 +1162,7 @@ checksum = "49874b5167b65d7193b8aba1567f5c7d93d001cafc34600cee003eda787e483f"
 name = "voydwalkr-vanguard-order"
 version = "0.1.0"
 dependencies = [
+ "base64",
  "cosmrs",
  "cosmwasm-std",
  "getrandom 0.2.6",
@@ -1169,6 +1170,7 @@ dependencies = [
  "rand_core 0.6.3",
  "schemars",
  "serde",
+ "serde_json",
  "thiserror",
 ]
 
