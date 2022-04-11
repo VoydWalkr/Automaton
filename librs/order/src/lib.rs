@@ -19,19 +19,19 @@ where T: Serialize + Clone + std::fmt::Debug + PartialEq + JsonSchema
 impl<T> Order<T>
 where T: Serialize + Deserialize<'static> + Clone + std::fmt::Debug + PartialEq + JsonSchema
 {
-  fn create(msgs: Vec<CosmosMsg<T>>) -> Order<T> {
+  pub fn create(msgs: Vec<CosmosMsg<T>>) -> Order<T> {
     Order {
       signature: None,
       msgs: msgs,
     }
   }
   
-  fn create_and_sign<S: Signer<Signature>>(signer: &S, msgs: Vec<CosmosMsg<T>>) -> Result<Order<T>, OrderError>
+  pub fn create_and_sign<S: Signer<Signature>>(signer: &S, msgs: Vec<CosmosMsg<T>>) -> Result<Order<T>, OrderError>
   {
     Order::create(msgs).sign(signer)
   }
   
-  fn sign<S: Signer<Signature>>(&self, signer: &S) -> Result<Self, OrderError>
+  pub fn sign<S: Signer<Signature>>(&self, signer: &S) -> Result<Self, OrderError>
   {
     let sig = signer.sign(to_binary(&self.msgs)?.as_slice());
     let data = base64::encode(sig.as_bytes());
@@ -42,7 +42,7 @@ where T: Serialize + Deserialize<'static> + Clone + std::fmt::Debug + PartialEq 
     })
   }
   
-  fn verify<V: Verifier<Signature>>(&self, verifier: &V) -> Result<(), OrderError>
+  pub fn verify<V: Verifier<Signature>>(&self, verifier: &V) -> Result<(), OrderError>
   {
     match &self.signature {
       None => Err(OrderError::Unsigned),
