@@ -85,7 +85,7 @@ mod tests {
   use serde_json::json;
   
   #[test]
-  fn sign_verify() -> Result<(), OrderError> {
+  fn sign_verify() {
     let key = SigningKey::random(OsRng);
     let order = Order::<Empty>::create_and_sign(
       &key,
@@ -95,15 +95,13 @@ mod tests {
           to_address: "foo".to_string(),
         })
       ],
-    )?;
+    ).unwrap();
     
-    order.verify(&VerifyingKey::from(key))?;
-    
-    Ok(())
+    order.verify(&VerifyingKey::from(key)).unwrap();
   }
   
   #[test]
-  fn serializable() -> Result<(), OrderError> {
+  fn serializable() {
     let key = SigningKey::random(OsRng);
     let order = Order::<Empty>::create_and_sign(
       &key,
@@ -113,7 +111,7 @@ mod tests {
           to_address: "bar".to_string(),
         })
       ],
-    )?;
+    ).unwrap();
     
     let value = json!(order);
     let r_serialized = serde_json::to_string_pretty(&value);
@@ -130,7 +128,6 @@ mod tests {
     };
     
     assert_eq!(deserialized, order);
-    Ok(())
   }
   
   #[test]
