@@ -1,7 +1,11 @@
 pub mod error;
 
 use cosmwasm_std::{CosmosMsg, Empty, to_binary};
-use k256::ecdsa::{Signature, signature::{Signature as Sig, Signer, Verifier}};
+use k256::ecdsa::{
+  recoverable::Signature,
+  signature::{Signature as Sig, Signer, Verifier},
+  VerifyingKey,
+};
 use schemars::JsonSchema;
 use serde::{Serialize, Deserialize};
 
@@ -33,7 +37,7 @@ where T: Serialize + Deserialize<'static> + Clone + std::fmt::Debug + PartialEq 
   
   pub fn sign<S: Signer<Signature>>(&self, signer: &S) -> Result<Self, OrderError>
   {
-    let sig = signer.sign(to_binary(&self.msgs)?.as_slice());
+    let sig = signer.sign(self.get_message_bytes()?.as_slice());
     let data = base64::encode(sig.as_bytes());
     
     Ok(Order {
@@ -48,13 +52,27 @@ where T: Serialize + Deserialize<'static> + Clone + std::fmt::Debug + PartialEq 
       None => Err(OrderError::Unsigned),
       Some(signature) => Ok(
         verifier.verify(
-          to_binary(&self.msgs)?.as_slice(),
+          self.get_message_bytes()?.as_slice(),
           &Signature::from_bytes(
             base64::decode(signature)?.as_slice()
           )?,
         )?
       ),
     }
+  }
+  
+  pub fn recover_verify_key(&self) -> Result<VerifyingKey, OrderError> {
+    match &self.signature {
+      Some(sig) => Ok(
+        Signature::from_bytes(base64::decode(sig)?.as_slice())
+          ?.recover_verify_key(self.get_message_bytes()?.as_slice())?
+      ),
+      None => Err(OrderError::Unsigned),
+    }
+  }
+  
+  fn get_message_bytes(&self) -> Result<Vec<u8>, OrderError> {
+    Ok(to_binary(&self.msgs)?.to_vec())
   }
 }
 
@@ -113,5 +131,20 @@ mod tests {
     
     assert_eq!(deserialized, order);
     Ok(())
+  }
+  
+  #[test]
+  fn recover_public_key() {
+    let signer = SigningKey::random(OsRng);
+    let verifier = signer.verifying_key();
+    let order = Order::<Empty>::create_and_sign(&signer, vec![
+      CosmosMsg::Bank(BankMsg::Send {
+        to_address: "foo".to_string(),
+        amount: vec![],
+      })
+    ]).unwrap();
+    
+    let recovered = order.recover_verify_key().unwrap();
+    assert_eq!(verifier, recovered);
   }
 }
