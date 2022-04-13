@@ -117,6 +117,30 @@ mod tests {
     qry::verify_order(deps.as_ref(), env, order).unwrap();
   }
   
+  #[test]
+  fn verify_order_fails() {
+    let mut deps = mock_dependencies(&[]);
+    let env = mock_env();
+    let prv1 = getprv(TEST1_MNEM, 0, 0);
+    let prv2 = getprv(TEST2_MNEM, 0, 0);
+    let addr1 = addr_from_prv(&prv1);
+    let addr2 = addr_from_prv(&prv2);
+    let canonical1 = deps.api.addr_canonicalize(addr1.as_ref()).unwrap();
+    
+    STATE.save(&mut deps.storage, &State {
+      owner: canonical1,
+    }).unwrap();
+    
+    let order = Order::<Empty>::create_and_sign(&SigningKey::from(prv2), vec![
+      CosmosMsg::Bank(BankMsg::Send {
+        amount: vec![],
+        to_address: addr2.to_string(),
+      })
+    ]).unwrap();
+    
+    qry::verify_order(deps.as_ref(), env, order).unwrap_err();
+  }
+  
   fn getprv(mnemonic: &str, account: u64, index: u64) -> XPrv {
     let mnem = Mnemonic::new(mnemonic, bip32::Language::English).unwrap();
     let seed = mnem.to_seed("");
