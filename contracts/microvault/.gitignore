@@ -9,7 +9,3 @@
 
 # macOS
 .DS_Store
-
-# IDEs
-*.iml
-.idea

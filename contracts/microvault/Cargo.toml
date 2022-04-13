@@ -40,15 +40,22 @@ optimize = """docker run --rm -v "$(pwd)":/code \
 """
 
 [dependencies]
+bech32 = "0.8"
 cosmwasm-std = { version = "0.16" }
 cosmwasm-storage = { version = "0.16" }
-cw-storage-plus = "0.9.1"
-cw2 = "0.9.1"
+cw-storage-plus = "0.8"
+cw2 = "0.8"
+k256 = "0.10"
 num-rational = { version = "0.4", default-features = false }
+ripemd = "0.1.1"
 schemars = "0.8.8"
 serde = { version = "1.0.127", default-features = false, features = ["derive"] }
+sha2 = "0.10"
 thiserror = { version = "1.0.26" }
 voydwalkr-util = { git = "https://github.com/VoydWalkr/Util" }
+voydwalkr-vanguard-order = { path = "../../librs/order" }
 
 [dev-dependencies]
+bip32 = "0.3"
 cosmwasm-schema = { version = "0.16" }
+hex = "0.4"
