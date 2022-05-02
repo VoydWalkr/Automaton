@@ -1,6 +1,6 @@
 use cosmwasm_std::{Addr, DepsMut, Env, MessageInfo, Response};
 
-use voydwalkr_vanguard_order::Order;
+use voydwalkr_automaton_order::Order;
 use crate::error::{ContractError};
 use crate::primitives::ContractResult;
 use crate::state::{STATE, State};

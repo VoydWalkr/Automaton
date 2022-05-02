@@ -1,7 +1,7 @@
 use cosmwasm_std::StdError;
 use k256::ecdsa;
 use thiserror::Error;
-use voydwalkr_vanguard_order::error::OrderError;
+use voydwalkr_automaton_order::error::OrderError;
 
 #[derive(Error, Debug)]
 pub enum ContractError {

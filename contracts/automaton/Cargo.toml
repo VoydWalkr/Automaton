@@ -1,5 +1,5 @@
 [package]
-name = "voydwalkr-vanguard"
+name = "voydwalkr-automaton"
 version = "0.1.0"
 authors = ["Kiruse <kiruse@kiruse.dev>"]
 edition = "2018"
@@ -43,12 +43,11 @@ optimize = """docker run --rm -v "$(pwd)":/code \
 cosmwasm-std = "0.16.0"
 cosmwasm-storage = "0.16.0"
 cw-storage-plus = "0.8"
-cw1 = "0.8"
 cw2 = "0.8"
 schemars = "0.8.3"
 serde = { version = "1.0.127", default-features = false, features = ["derive"] }
 thiserror = "1.0.26"
-voydwalkr-vanguard-order = { path = "../../librs/order" }
+voydwalkr-automaton-order = { path = "../../librs/order" }
 
 [dev-dependencies]
 cosmwasm-schema = "0.16.0"

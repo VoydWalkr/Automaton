@@ -1,15 +1,11 @@
 {
-  "name": "my-terra-dapp",
+  "name": "voydwalkr-automaton",
   "version": "1.0.0",
   "description": "",
   "dependencies": {
-    "@iboss/terrain": "0.0.8",
     "dotenv": "^16.0.0"
   },
-  "workspaces": [
-    "frontend"
-  ],
   "author": "",
-  "license": "ISC",
+  "license": "GPL-3.0",
   "private": true
 }

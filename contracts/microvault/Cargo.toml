@@ -53,7 +53,7 @@ serde = { version = "1.0.127", default-features = false, features = ["derive"] }
 sha2 = "0.10"
 thiserror = { version = "1.0.26" }
 voydwalkr-util = { git = "https://github.com/VoydWalkr/Util" }
-voydwalkr-vanguard-order = { path = "../../librs/order" }
+voydwalkr-automaton-order = { path = "../../librs/order" }
 
 [dev-dependencies]
 bip32 = "0.3"

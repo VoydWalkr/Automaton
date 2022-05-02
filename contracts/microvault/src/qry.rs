@@ -1,5 +1,5 @@
 use cosmwasm_std::{Deps, Env, StdResult};
-use voydwalkr_vanguard_order::Order;
+use voydwalkr_automaton_order::Order;
 
 use crate::error::ContractError;
 use crate::msg::{QueryOwnerResponse};

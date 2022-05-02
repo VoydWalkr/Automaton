@@ -3,8 +3,8 @@ use std::fs::create_dir_all;
 
 use cosmwasm_schema::{export_schema, remove_schemas, schema_for};
 
-use voydwalkr_vanguard::msg::{ExecuteMsg, InstantiateMsg, QueryMsg, QueryOwnerResponse};
-use voydwalkr_vanguard::state::State;
+use voydwalkr_automaton::msg::{ExecuteMsg, InstantiateMsg, QueryMsg, QueryOwnerResponse};
+use voydwalkr_automaton::state::State;
 
 fn main() {
   let mut out_dir = current_dir().unwrap();

@@ -13,7 +13,7 @@ use crate::exec;
 use crate::qry;
 
 // version info for migration info
-const CONTRACT_NAME: &str = "voydwalkr.xyz:vanguard-microvault";
+const CONTRACT_NAME: &str = "voydwalkr.xyz:automaton-microvault";
 const CONTRACT_VERSION: &str = env!("CARGO_PKG_VERSION");
 
 #[cfg_attr(not(feature = "library"), entry_point)]
@@ -82,7 +82,7 @@ mod tests {
   use cosmwasm_std::testing::{mock_dependencies, mock_env};
   // use cosmwasm_std::{coins, from_binary};
   use k256::ecdsa::{SigningKey};
-  use voydwalkr_vanguard_order::Order;
+  use voydwalkr_automaton_order::Order;
   
   const TEST1_MNEM: &str = "notice oak worry limit wrap speak medal online prefer cluster roof addict wrist behave treat actual wasp year salad speed social layer crew genius";
   const TEST2_MNEM: &str = "quality vacuum heart guard buzz spike sight swarm shove special gym robust assume sudden deposit grid alcohol choice devote leader tilt noodle tide penalty";

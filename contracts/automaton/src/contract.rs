@@ -11,7 +11,7 @@ use crate::exec;
 use crate::qry;
 
 // version info for migration info
-const CONTRACT_NAME: &str = "voydwalkr.xyz:vanguard";
+const CONTRACT_NAME: &str = "voydwalkr.xyz:automaton";
 const CONTRACT_VERSION: &str = env!("CARGO_PKG_VERSION");
 
 #[cfg_attr(not(feature = "library"), entry_point)]

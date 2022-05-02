@@ -288,17 +288,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "cw1"
-version = "0.8.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b54b16025da3f2b31f033c1c4b917094126c385f6ffe7243560263509aed9c84"
-dependencies = [
- "cosmwasm-std",
- "schemars",
- "serde",
-]
-
-[[package]]
 name = "cw2"
 version = "0.8.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1220,7 +1209,6 @@ dependencies = [
  "cosmwasm-std",
  "cosmwasm-storage",
  "cw-storage-plus",
- "cw1",
  "cw2",
  "schemars",
  "serde",
@@ -1232,6 +1220,7 @@ dependencies = [
 name = "voydwalkr-vanguard-order"
 version = "0.1.0"
 dependencies = [
+ "base64",
  "cosmrs",
  "cosmwasm-std",
  "k256 0.10.4",
